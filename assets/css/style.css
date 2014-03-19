@@ -1,0 +1,47 @@
+/* Main Layout */
+
+body{
+    /*overflow: hidden;*/
+}
+
+.header-wrapper{
+    height: 50px;
+    background-color: red;
+}
+
+.content-wrapper{
+    background-color: #333;
+}
+
+.left-sidebar-wrapper{
+    min-width: 300px;
+    background-color: yellow;
+}
+
+.body-wrapper{
+    background-color: green;
+}
+
+/* Stages Sidebar */
+
+.stages-sidebar{
+    background-color: blue;
+}
+
+.filter-controls{
+    height: 50px;
+    background-color: cyan;
+}
+
+.thumb-list{
+    overflow-y:scroll;
+}
+
+.stage-thumb{
+    width: 128px;
+    height: 96px;
+    margin: 10px;
+    background-image: url(./assets/img/thumb-spinner.gif);
+    background-position: 10% 10%;
+    background-color: magenta;
+}
