@@ -1,53 +1,37 @@
-Class('RandomImage').inherits(Widget)({
-    ELEMENT_CLASS : 'random-image-app',
+Class('Button').inherits(Widget)({
+    ELEMENT_CLASS : 'button',
+
     prototype : {
         init : function(config){
             Widget.prototype.init.call(this, config);
-
-            this.randomizeButton = new Button({
-                label : 'Randomize...'
-            });
-
-            this.randomizeButton.render(this.element);
-
+            this.element.html('This is a button with random color');
+            this.setColor(this.color);
             this._bindEvents();
         },
 
+        setColor : function(color){
+            this.element.css('background-color', color);
+        },
+
         _bindEvents : function(){
-            var randomImageApp = this;
+            var button = this;
 
-            this.randomizeButton.bind('activate', function(){
-                randomImageApp._randomizeImage();
+            this.element.click(function(){
+                button.setRandomColor();
             });
         },
 
-        _randomizeImage : function(){
-            var randomImageApp = this;
+        setRandomColor : function(){
+            var colors = ['red', 'green', 'blue', 'green', 'yellow'];
 
-            this._getNewImage(function(imageUrl){
-                randomImageApp.imageDisplay.setImage(imageUrl);
-            });
-        },
-
-        _getNewImage : function(callback){
-
-            $.getJSON('http://www.reddit.com/r/awww.json?only=images', function(redditData){
-
-                var redditPosts     = redditData.data.children,
-                    limit           = redditPosts.length-1,
-                    randomPostIndex = Math.floor(Math.random()*limit),
-                    randomPost      = redditPosts[randomPostIndex],
-                    randomImageUrl  = randomPost.data.url;
-
-                console.log('>>', randomImageUrl);
-
-            });
+            this.setColor(colors[Math.floor(Math.random()*4)]);
         }
     }
 });
 
-
 $(document).ready(function(){
-    window.randomImage = new RandomImage();
-    randomImage.render($('.wrapper'));
+    window.simpleWidget = new Button({
+        color : 'red'
+    });
+    simpleWidget.render($('.wrapper'));
 });
